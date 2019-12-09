@@ -1,0 +1,47 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Open Sans', sans-serif;
+    background: #ed6190;
+    color: #fff;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+.container{
+    max-width: 50%;
+    margin: 5% auto;
+}
+.overall-todo{
+    background: #3c424a;
+}
+ul{
+    padding: 0;
+}
+li{
+    list-style: none;
+}
+.date-format{
+    padding:10px 0 0;
+    border-bottom: 1px solid #000;
+}
+.date-format ul{
+    text-align: center;
+}
+.date-format ul li{
+    display: inline-block;
+    margin: 0 30px 0 0;
+    width: 10%;
+}
+.date-format ul li.active{
+    border: 0 solid #ddd;
+    border-bottom: 0.1875rem solid #ed6190;
+}
+.date-format ul li a{
+    padding: 8px;
+    display: block;
+}
