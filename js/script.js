@@ -6,8 +6,10 @@ let monthText = document.querySelector('.date-zone .month');
 let dayText = document.querySelector('.day')
 let dateText = document.querySelector('.date')
 let year = document.querySelector('.year')
-let days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
-var current = 0, months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+let days = ['monday', 'tuesday', 'Wednesday', 'Thursday', 'friday', 'saturday', 'sunday'];
+let current = 0;
+let initialDate = 1;
+let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 let d = new Date();
 class UI {
     static Pageload() {
@@ -33,6 +35,12 @@ class UI {
         }
         monthText.innerHTML = months[current + 1]
         current++;
+		//if(initialDate === months.length - 1)
+		dateText.innerHTML = d.getDate() + initialDate;
+		initialDate++;
+		
+		//dayText.innerHTML = days[d.getDay() + 1];
+		//days++;
     }
     static prevBtn() {
         if (current === 0) {
