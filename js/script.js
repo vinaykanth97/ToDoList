@@ -6,17 +6,16 @@ let monthText = document.querySelector('.date-zone .month');
 let dayText = document.querySelector('.day')
 let dateText = document.querySelector('.date')
 let year = document.querySelector('.year')
-let days = ['monday', 'tuesday', 'Wednesday', 'Thursday', 'friday', 'saturday', 'sunday'];
-let current = 0;
-let initialDate = 1;
-let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-let d = new Date();
+let current = 1;
+let dateMinus = 1;
+
 class UI {
     static Pageload() {
-        dayText.innerHTML = days[d.getDay()];
-        monthText.innerHTML = months[d.getMonth()]
-        dateText.innerHTML = d.getDate();
-        year.innerHTML = d.getFullYear();
+        moment().format();
+        dayText.innerHTML = moment().format("dddd");
+        monthText.innerHTML = moment().format('MMM');
+        dateText.innerHTML = moment().format('D');
+        year.innerHTML = moment().format('YYYY');
     }
     static selectItem() {
         tabItems.forEach((item) => {
@@ -30,25 +29,20 @@ class UI {
         contId.classList.add('show')
     }
     static nextBtn() {
-        if (current === months.length - 1) {
-            current = -1;
-        }
-        monthText.innerHTML = months[current + 1]
+        dayText.innerHTML = moment().add('days', current).format('dddd')
+        dayText.innerHTML = moment().add('days', current).format("dddd");
+        monthText.innerHTML = moment().add('days', current).format('MMM');
+        dateText.innerHTML = moment().add('days', current).format('D');
+        year.innerHTML = moment().add('days', current).format('YYYY');
         current++;
-		//if(initialDate === months.length - 1)
-		dateText.innerHTML = d.getDate() + initialDate;
-		initialDate++;
-		
-		//dayText.innerHTML = days[d.getDay() + 1];
-		//days++;
     }
     static prevBtn() {
-        if (current === 0) {
-            current = months.length;
-        }
-        monthText.innerHTML = months[current - 1];
-        current--;
-
+        dayText.innerHTML = moment().subtract(dateMinus, 'days').format('dddd');
+        dayText.innerHTML = moment().subtract(dateMinus, 'days').format("dddd");
+        monthText.innerHTML = moment().subtract(dateMinus, 'days').format('MMM');
+        dateText.innerHTML = moment().subtract(dateMinus, 'days').format('D');
+        year.innerHTML = moment().subtract(dateMinus, 'days').format('YYYY');
+        dateMinus++;
     }
 }
 
