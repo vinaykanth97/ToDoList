@@ -12,8 +12,8 @@ a {
   text-decoration: none;
   color: inherit;
 }
-.t-cent{
-    text-align: center;
+.t-cent {
+  text-align: center;
 }
 .container {
   max-width: 50%;
@@ -54,30 +54,57 @@ li {
 #tab4-content {
   display: none;
 }
-.show{
-    display: block!important;
+.show {
+  display: block !important;
 }
-.overall-tasks{
-    padding:40px 20px;
+.overall-tasks {
+  padding: 40px 20px;
 }
-.arrow{
-    width: 3%;
-    display: inline-block;
-    position: absolute;
+.arrow {
+  flex-basis: 18%;
 }
-.arrow img{
-    width: 100%;
-    cursor: pointer;
+.arrow img {
+  width: 40%;
+  cursor: pointer;
 }
-.date-picker-slider{
-    position: relative;
-    overflow: hidden;
+.date-picker-slider {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 50%;
+  margin: 0 auto;
 }
-#prev-arrow{
-    top: 27%;
-    left: 33%;
+
+.date-picker-slider .day {
+  margin-bottom: 5px;
+  text-transform: capitalize;
 }
-#next-arrow{
-    top: 27%;
-    right: 33%;
+.date-zone {
+  cursor: pointer;
+}
+.add-task {
+  padding: 50px 70px 0;
+}
+
+#task-field{
+  width: 100%;
+  padding: 10px;
+  outline: 0;
+  border: 1px solid #191b1d;
+  /* border-radius: 3px; */
+  background: #2b2d2f;
+  box-shadow: -1px 3px 6px 1px #282b2f;
+  color: #ffffff;
+}
+.task-content{
+  padding: 20px 0;
+}
+.task-content h6{
+  font-size: 14px;
+  font-weight: normal;
+}
+.task-content small{
+  font-size: 10px;
 }
