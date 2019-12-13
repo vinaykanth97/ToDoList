@@ -5,18 +5,18 @@ let prevArrow = document.querySelector('#prev-arrow');
 let monthText = document.querySelector('.date-zone .month');
 let dayText = document.querySelector('.day')
 let dateText = document.querySelector('.date')
-let year = document.querySelector('.year')
-let current = 1;
-let dateMinus = 1;
+let yearText = document.querySelector('.year')
+let days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+let initial = 1;
+let d = new Date();
 
-class UI {
-    static Pageload() {
-        moment().format();
-        dayText.innerHTML = moment().format("dddd");
-        monthText.innerHTML = moment().format('MMM');
-        dateText.innerHTML = moment().format('D');
-        year.innerHTML = moment().format('YYYY');
-    }
+dayText.innerHTML = days[d.getDay()];
+monthText.innerHTML = months[d.getMonth()]
+dateText.innerHTML = d.getDate();
+yearText.innerHTML = d.getFullYear();
+class Tabs {
+
     static selectItem() {
         tabItems.forEach((item) => {
             item.classList.remove('active')
@@ -28,27 +28,26 @@ class UI {
         const contId = document.getElementById(`${this.id}-content`);
         contId.classList.add('show')
     }
+}
+class DateLogic {
     static nextBtn() {
-        dayText.innerHTML = moment().add('days', current).format('dddd')
-        dayText.innerHTML = moment().add('days', current).format("dddd");
-        monthText.innerHTML = moment().add('days', current).format('MMM');
-        dateText.innerHTML = moment().add('days', current).format('D');
-        year.innerHTML = moment().add('days', current).format('YYYY');
-        current++;
+        d.setDate(d.getDate() + initial)
+        dateText.innerHTML = d.getDate();
+        monthText.innerHTML = months[d.getMonth()];
+        yearText.innerHTML = d.getFullYear();
+        dayText.innerHTML = days[d.getDay()];
     }
     static prevBtn() {
-        dayText.innerHTML = moment().subtract(dateMinus, 'days').format('dddd');
-        dayText.innerHTML = moment().subtract(dateMinus, 'days').format("dddd");
-        monthText.innerHTML = moment().subtract(dateMinus, 'days').format('MMM');
-        dateText.innerHTML = moment().subtract(dateMinus, 'days').format('D');
-        year.innerHTML = moment().subtract(dateMinus, 'days').format('YYYY');
-        dateMinus++;
+        d.setDate(d.getDate() - initial)
+        dateText.innerHTML = d.getDate();
+        monthText.innerHTML = months[d.getMonth()];
+        yearText.innerHTML = d.getFullYear();
+        dayText.innerHTML = days[d.getDay()];
     }
 }
 
-document.addEventListener('DOMContentLoaded', UI.Pageload)
 tabItems.forEach((items) => {
-    items.addEventListener('click', UI.selectItem)
+    items.addEventListener('click', Tabs.selectItem)
 })
-nextArrow.addEventListener('click', UI.nextBtn);
-prevArrow.addEventListener('click', UI.prevBtn);
+nextArrow.addEventListener('click', DateLogic.nextBtn);
+prevArrow.addEventListener('click', DateLogic.prevBtn);
