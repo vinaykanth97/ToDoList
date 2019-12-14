@@ -99,7 +99,7 @@ li {
   color: #ffffff;
 }
 .task-content{
-  padding: 20px 0;
+  flex: 2;
 }
 .task-content h6{
   font-size: 14px;
@@ -107,4 +107,18 @@ li {
 }
 .task-content small{
   font-size: 10px;
+}
+.task-card{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+.task-option{
+  flex: 1;
+  text-align: right;
+}
+.task-option img{
+  width: 10%;
+  cursor: pointer;
 }
