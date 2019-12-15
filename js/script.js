@@ -17,7 +17,7 @@ dayText.innerHTML = days[d.getDay()];
 monthText.innerHTML = months[d.getMonth()]
 dateText.innerHTML = d.getDate();
 yearText.innerHTML = d.getFullYear();
-
+let weekly = document.getElementsByClassName('weekly')
 class Tabs {
 
     static selectItem() {
@@ -53,25 +53,78 @@ tabItems.forEach((items) => {
 })
 nextArrow.addEventListener('click', DateLogic.nextBtn);
 prevArrow.addEventListener('click', DateLogic.prevBtn);
+
+
+
+// weekly filter
+function getWeekDates() {
+
+    let now = new Date();
+
+    let dayOfWeek = now.getDay();
+    let numDay = now.getDate();
+
+    let start = new Date(now);
+    start.setDate(numDay - dayOfWeek);
+    start.setHours(0, 0, 0, 0);
+
+
+    let end = new Date(now);
+    end.setDate(numDay + (7 - dayOfWeek));
+    end.setHours(0, 0, 0, 0);
+
+    return [start, end];
+}
+let [start, end] = getWeekDates();
+
 let Emptarray = [];
 
-myForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+function appendListLogic() {
     let TimeStamp = `Task Added on ${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
-    Emptarray.push([addtodoValue.value, TimeStamp]);
+    Emptarray.push([addtodoValue.value, d.getDate()]);
     let output = "";
     for (let i = 0; i < Emptarray.length; i++) {
         const element = Emptarray[i];
         output += `
-    <div class="task-card" id="content-block">
-        <div class="task-content">
-                <h6 class="content">${element[0]}</h6>
-                <small class="datestamp">${element[1]}</small>
-        </div>
-        <div class="task-option"><img src="images/ellipsis.svg"></div>
-  </div>
+            <div class="task-card" id="content-block">
+                <div class="task-content">
+                    <h6 class="content">${element[0]}</h6>
+                    <small class="datestamp">To do added on ${element[1]} ${months[d.getMonth()]} ${d.getFullYear()}</small>
+                </div>
+                <div class="task-option"><img src="images/ellipsis.svg"></div>
+            </div>
   `;
+
     }
+    let from = start.getDate();
+    let to = end.getDate();
+    let check = d.getDate();
+    weekendOutput = "";
+    let weekfilt = Emptarray.filter(emp => {
+        if (emp[1] >= from && emp[1] <= to) {
+            weekendOutput += `
+            <div class="task-card" id="content-block">
+                <div class="task-content">
+                    <h6 class="content">${emp[0]}</h6>
+                    <small class="datestamp">To do added on ${emp[1]} ${months[d.getMonth()]} ${d.getFullYear()}</small>
+                </div>
+                <div class="task-option"><img src="images/ellipsis.svg"></div>
+            </div>
+    `;
+            document.getElementById('week').innerHTML = weekendOutput;
+        } else {
+            return false;
+        }
+    })
+
     document.getElementById('todo-current').innerHTML = output;
-    console.log(Emptarray)
+};
+
+function AppendTodo(e) {
+    e.preventDefault();
+    appendListLogic();
+}
+
+myForm.addEventListener('submit', (e) => {
+    AppendTodo(e);
 })
