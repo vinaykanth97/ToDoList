@@ -77,11 +77,11 @@ function getWeekDates() {
 }
 let [start, end] = getWeekDates();
 
+
 let Emptarray = [];
 
 function appendListLogic() {
-    let TimeStamp = `Task Added on ${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
-    Emptarray.push([addtodoValue.value, d.getDate()]);
+    Emptarray.unshift([addtodoValue.value, d.getDate(),`To do added on ${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`]);
     let output = "";
     for (let i = 0; i < Emptarray.length; i++) {
         const element = Emptarray[i];
@@ -89,7 +89,7 @@ function appendListLogic() {
             <div class="task-card" id="content-block">
                 <div class="task-content">
                     <h6 class="content">${element[0]}</h6>
-                    <small class="datestamp">To do added on ${element[1]} ${months[d.getMonth()]} ${d.getFullYear()}</small>
+                    <small class="datestamp">${element[2]}</small>
                 </div>
                 <div class="task-option"><img src="images/ellipsis.svg"></div>
             </div>
@@ -118,6 +118,7 @@ function appendListLogic() {
     })
 
     document.getElementById('todo-current').innerHTML = output;
+    console.log(Emptarray)
 };
 
 function AppendTodo(e) {
@@ -127,4 +128,5 @@ function AppendTodo(e) {
 
 myForm.addEventListener('submit', (e) => {
     AppendTodo(e);
+
 })
