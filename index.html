@@ -54,11 +54,11 @@
                                 <input type="text" name="task" id="task-field" placeholder="add a task">
                                 <input type="submit" value="" hidden>
                             </form>
-                            <div class="current-task">
-                                <div class="task-card">
-                                    <div class="task-content">
-                                            <h6>Getting an invite for dribble</h6>
-                                            <small>Added on 13th Dec 2019</small>
+                            <div class="current-task" id="todo-current">
+                                <div class="task-card" id="content-block">
+                                    <div class="task-content" id="conts">
+                                            <h6 class="content"></h6>
+                                            <small class="datestamp"></small>
                                     </div>
                                   <div class="task-option"></div>
                                 </div>
@@ -69,13 +69,37 @@
 
                 </div>
                 <div class="tab-item-content" id="tab2-content">
-                    <p>tab2</p>
+                    <div class="current-task weekly" id="week" data-id="weekly">
+                        <div class="task-card" id="content-block">
+                            <div class="task-content" id="conts">
+                                    <h6 class="content"></h6>
+                                    <small class="datestamp"></small>
+                            </div>
+                          <div class="task-option"></div>
+                        </div>
+                    </div>
                 </div>
                 <div class="tab-item-content" id="tab3-content">
-                    <p>tab3</p>
+                    <div class="current-task" id="month">
+                        <div class="task-card" id="content-block">
+                            <div class="task-content" id="conts">
+                                    <h6 class="content"></h6>
+                                    <small class="datestamp"></small>
+                            </div>
+                          <div class="task-option"></div>
+                        </div>
+                    </div>
                 </div>
                 <div class="tab-item-content" id="tab4-content">
-                    <p>tab4</p>
+                    <div class="current-task" id="year">
+                        <div class="task-card" id="content-block">
+                            <div class="task-content" id="conts">
+                                    <h6 class="content"></h6>
+                                    <small class="datestamp"></small>
+                            </div>
+                          <div class="task-option"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
