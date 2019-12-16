@@ -81,7 +81,7 @@ let [start, end] = getWeekDates();
 let Emptarray = [];
 
 function appendListLogic() {
-    Emptarray.unshift([addtodoValue.value, d.getDate(),`To do added on ${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`]);
+    Emptarray.unshift([addtodoValue.value, d.getDate(), `To do added on ${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`, d.getMonth(),d.getFullYear()]);
     let output = "";
     for (let i = 0; i < Emptarray.length; i++) {
         const element = Emptarray[i];
@@ -106,7 +106,7 @@ function appendListLogic() {
             <div class="task-card" id="content-block">
                 <div class="task-content">
                     <h6 class="content">${emp[0]}</h6>
-                    <small class="datestamp">To do added on ${emp[1]} ${months[d.getMonth()]} ${d.getFullYear()}</small>
+                    <small class="datestamp">${emp[2]}</small>
                 </div>
                 <div class="task-option"><img src="images/ellipsis.svg"></div>
             </div>
@@ -116,7 +116,46 @@ function appendListLogic() {
             return false;
         }
     })
+    var date = new Date()
+    var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+    var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+    monthOutput = "";
+    let monthFilt = Emptarray.filter(emp => {
+        if (emp[3] == lastDay.getMonth() && emp[3] == firstDay.getMonth()) {
+            monthOutput += `
+            <div class="task-card" id="content-block">
+                <div class="task-content">
+                    <h6 class="content">${emp[0]}</h6>
+                    <small class="datestamp">${emp[2]}</small>
+                </div>
+                <div class="task-option"><img src="images/ellipsis.svg"></div>
+            </div>
+    `;
 
+            document.getElementById('month').innerHTML = monthOutput;
+        } else {
+            return false;
+        }
+    })
+    yearOutput = "";
+    let yearFilt = Emptarray.filter(emp => {
+        if (emp[4] == d.getFullYear() && emp[4] == d.getFullYear()) {
+            yearOutput += `
+            <div class="task-card" id="content-block">
+                <div class="task-content">
+                    <h6 class="content">${emp[0]}</h6>
+                    <small class="datestamp">${emp[2]}</small>
+                </div>
+                <div class="task-option"><img src="images/ellipsis.svg"></div>
+            </div>
+    `;
+
+            document.getElementById('year').innerHTML = yearOutput;
+
+        } else {
+            return false;
+        }
+    })
     document.getElementById('todo-current').innerHTML = output;
     console.log(Emptarray)
 };
